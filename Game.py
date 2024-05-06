@@ -1,8 +1,13 @@
 import math
 
+from board import Board
+
+
 class Game:
     def __init__(self, board):
         self.coBoard = board
+        # self.coBoard.copy_board(board)
+
 
     def utilityFunc(self):
         # Black is MAX and White is MIN
@@ -29,7 +34,7 @@ class Game:
 
         return validChildren
 
-    
+    ########### copy another Board for recursion############
     def alphaBetaSearch(self, depth, alpha, beta, isMaxPlayer):
         if (depth == 0):
             return self.utilityFunc(), None
@@ -39,6 +44,7 @@ class Game:
             maxEval = -math.inf
             bestChild = None
             for child in children:
+                self.coBoard.set_cell(child[0], child[1], 'B')
                 evalutation, _ = self.alphaBetaSearch(depth - 1, alpha, beta, False)
                 maxEval = max(maxEval, evalutation)
                 alpha = max(alpha, evalutation)
@@ -51,6 +57,7 @@ class Game:
             minEval = math.inf
             bestChild = None
             for child in children:
+                self.coBoard.set_cell(child[0], child[1], 'W')
                 evalutation, _ = self.alphaBetaSearch(depth - 1, alpha, beta, True)
                 minEval = max(minEval, evalutation)
                 beta = max(beta, evalutation)

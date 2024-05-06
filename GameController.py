@@ -4,6 +4,7 @@ import math
 
 class GameController:
     def __init__(self, depth):
+
         self.board = Board()
         self.game = Game(self.board)
         self.playerTurn = 'U' #black disks

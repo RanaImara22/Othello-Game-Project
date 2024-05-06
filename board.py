@@ -2,13 +2,15 @@ class Board:
     
 
     def __init__(self):
+
         self.board = [['_' for _ in range(10)] for _ in range(10)]
         self.board[4][4] = 'W'
         self.board[4][5] = 'B'
         self.board[5][4] = 'B'
         self.board[5][5] = 'W'
         self.printBoard()
-
+    def copy_board(self, other_board):
+        self.board = [row[:] for row in other_board.board]
     def printBoard(self):
         for i in range(1, 9):
             for j in range(1, 9):
