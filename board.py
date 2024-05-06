@@ -2,7 +2,7 @@ class Board:
     
 
     def __init__(self):
-        self.board = [['_' for _ in range(9)] for _ in range(9)]
+        self.board = [['_' for _ in range(10)] for _ in range(10)]
         self.board[4][4] = 'W'
         self.board[4][5] = 'B'
         self.board[5][4] = 'B'

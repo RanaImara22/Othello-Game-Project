@@ -1,7 +1,8 @@
 from GameController import GameController
 
 def main():
-    level = input("Choose the level:\n 1.Easy\n 2.Medium\n 3.Hard\n")
+    print ("Choose the level:\n 1.Easy\n 2.Medium\n 3.Hard\n")
+    level = int(input())
     depth = 1
     if (level == 1):
         depth = 1
@@ -10,6 +11,7 @@ def main():
     else:
         depth = 5
 
+    # print(level)
     gameController = GameController(depth)
     n = 60
     while(n > 0):

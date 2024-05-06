@@ -15,7 +15,7 @@ class GameController:
             index = x + 1
             flip = False
             for i in range(x + 1, 9):
-                if (self.board.get_cell(i, j) == color):
+                if (self.board.get_cell(i, y) == color):
                     flip = True
                     index = i
                     break
@@ -81,7 +81,7 @@ class GameController:
             self.playerTurn = 'C' # white
 
         else:
-            selfplayerTurn = 'U' # black
+            self.playerTurn = 'U' # black
 
     def play(self):
         if (self.playerTurn == 'U'):

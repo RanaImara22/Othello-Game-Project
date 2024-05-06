@@ -46,7 +46,7 @@ class Game:
             maxEval = -math.inf
             bestChild = None
             for child in children:
-                evalutation, _ = self.alphaBetaSearch(child[0], child[1], depth - 1, alpha, beta, False)
+                evalutation, _ = self.alphaBetaSearch( depth - 1, alpha, beta, False)
                 maxEval = max(maxEval, evalutation)
                 alpha = max(alpha, evalutation)
                 bestChild = child
@@ -58,7 +58,7 @@ class Game:
             minEval = math.inf
             bestChild = None
             for child in children:
-                evalutation, _ = self.alphaBetaSearch(child[0], child[1], depth - 1, alpha, beta, True)
+                evalutation, _ = self.alphaBetaSearch( depth - 1, alpha, beta, True)
                 minEval = max(minEval, evalutation)
                 beta = max(beta, evalutation)
                 bestChild = child
