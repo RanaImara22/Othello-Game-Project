@@ -29,16 +29,9 @@ class Game:
 
         return validChildren
 
-    def isGameOver(self):
-        for i in range(1, 9):
-            for j in range(1, 9):
-                if (self.coBoard.get_cell(i, j) == '_'):
-                    return False
-        return True
-
     
     def alphaBetaSearch(self, depth, alpha, beta, isMaxPlayer):
-        if (depth == 0 or self.isGameOver()):
+        if (depth == 0):
             return self.utilityFunc(), None
         
         children = self.getValidChildren(isMaxPlayer)
@@ -46,7 +39,7 @@ class Game:
             maxEval = -math.inf
             bestChild = None
             for child in children:
-                evalutation, _ = self.alphaBetaSearch( depth - 1, alpha, beta, False)
+                evalutation, _ = self.alphaBetaSearch(depth - 1, alpha, beta, False)
                 maxEval = max(maxEval, evalutation)
                 alpha = max(alpha, evalutation)
                 bestChild = child
@@ -58,7 +51,7 @@ class Game:
             minEval = math.inf
             bestChild = None
             for child in children:
-                evalutation, _ = self.alphaBetaSearch( depth - 1, alpha, beta, True)
+                evalutation, _ = self.alphaBetaSearch(depth - 1, alpha, beta, True)
                 minEval = max(minEval, evalutation)
                 beta = max(beta, evalutation)
                 bestChild = child
