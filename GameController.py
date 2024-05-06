@@ -69,12 +69,12 @@ class GameController:
 
 
     def updateBoard(self,x, y, color):
-        if (self.board.isLegalMove(x, y, color)):
-            self.board.set_cell(x, y, color)
-            self.board.printBoard()
-            print('\n')
-            self.flipDisk(x, y, color)
-            self.board.printBoard()
+        self.board.set_cell(x, y, color)
+        self.board.printBoard()
+        print('\n')
+        self.flipDisk(x, y, color)
+        self.board.printBoard()
+        print('\n')
 
     def switchPlayers(self):
         if (self.playerTurn == 'U'):
@@ -84,14 +84,57 @@ class GameController:
             self.playerTurn = 'U' # black
 
     def play(self):
+        white = 2
+        black = 2
+        gameOver = False
         if (self.playerTurn == 'U'):
-            print("\nEnter the coordinates of your desired cell: ")
-            x = int(input("x: "))
-            y = int(input("y: "))
+            validMove = False
+            while(validMove == False):
+                print("\nEnter the coordinates of your desired cell: ")
+                x = int(input("x: "))
+                y = int(input("y: "))
+                validMove = self.board.isLegalMove(x, y, 'B')
+                if (validMove == False):
+                    print("Invalid Cell. Please Choose Another One")
+
             self.updateBoard(x, y, 'B')
+            if (self.isGameOver()):
+                gameOver = True
+                white, black = self.calcScore()
             self.switchPlayers()
 
         else:
             evalutation, bestMove = self.game.alphaBetaSearch(self.depth, -1000, 1000, False)
             self.updateBoard(bestMove[0], bestMove[1], 'W')
+            if (self.isGameOver()):
+                white, black = self.calcScore()
+                gameOver = True
             self.switchPlayers()
+
+        if (gameOver):
+            if (black > white):
+                print(f"YOU WON. \n Black Disks = {black} and White Disks = {white}")
+            elif (white > black):
+                print(f"COMPUTER WON. \n Black Disks = {black} and White Disks = {white}")
+            else:
+                print(f"TIE. \n Black Disks = {black} and White Disks = {white}")
+
+
+    def isGameOver(self):
+        for i in range(1, 9):
+            for j in range(1, 9):
+                if (self.board.get_cell(i, j) == '_'):
+                    return False
+        return True
+
+    def calcScore(self):
+        white = 0
+        black = 0
+        for i in range(1, 9):
+            for j in range(1, 9):
+                if (self.board.get_cell(i, j) == 'B'):
+                    black += 1
+                else:
+                    white += 1
+
+        return white, black
