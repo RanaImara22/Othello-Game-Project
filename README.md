@@ -16,9 +16,6 @@ This project implements the classic Othello game in either Prolog or Python, adh
   - Implementation of alpha-beta pruning algorithm.
   - Support for different difficulty levels (Easy, Medium, Hard) based on algorithm depth.
 
-## Bonus Features
-- User interface in any language (Java, C#, Python, etc.).
-
 ## Game Overview
 Othello is a strategy board game played on an 8×8 board where players compete to capture the opponent's pieces by outflanking them with their own pieces.
 
