@@ -2,13 +2,16 @@ from board import Board
 from Game import Game
 import math
 
+
 class GameController:
     def __init__(self, depth):
 
         self.board = Board()
-        self.game = Game(self.board)
-        self.playerTurn = 'U' #black disks
+        self.game = Game()
+        self.playerTurn = 'U' #User Turn 'with black disks'
         self.depth = depth
+        self.white = 2
+        self.black = 2
 
     def flipDisk(self, x, y, color):
         # moving down
@@ -85,9 +88,9 @@ class GameController:
             self.playerTurn = 'U' # black
 
     def play(self):
-        white = 2
-        black = 2
         gameOver = False
+        if (self.white == 2 and self.black == 2):
+            print(f"Score:\n White: {self.white}    Black: {self.black}\n")
         if (self.playerTurn == 'U'):
             validMove = False
             while(validMove == False):
@@ -99,27 +102,28 @@ class GameController:
                     print("Invalid Cell. Please Choose Another One")
 
             self.updateBoard(x, y, 'B')
+            self.white, self.black = self.calcScore()
             if (self.isGameOver()):
                 gameOver = True
-                white, black = self.calcScore()
             self.switchPlayers()
 
         else:
-            evalutation, bestMove = self.game.alphaBetaSearch(self.depth, -1000, 1000, False)
+            evalutation, bestMove = self.game.alphaBetaSearch(self.board, self.depth, -1000, 1000, False)
             self.updateBoard(bestMove[0], bestMove[1], 'W')
+            self.white, self.black = self.calcScore()
             if (self.isGameOver()):
-                white, black = self.calcScore()
                 gameOver = True
             self.switchPlayers()
 
         if (gameOver):
-            if (black > white):
-                print(f"YOU WON. \n Black Disks = {black} and White Disks = {white}")
-            elif (white > black):
-                print(f"COMPUTER WON. \n Black Disks = {black} and White Disks = {white}")
+            if (self.black > self.white):
+                print(f"YOU WON. \n Black Disks = {self.black} and White Disks = {self.white}\n")
+            elif (self.white > self.black):
+                print(f"COMPUTER WON. \n Black Disks = {self.black} and White Disks = {self.white}\n")
             else:
-                print(f"TIE. \n Black Disks = {black} and White Disks = {white}")
-
+                print(f"TIE. \n Black Disks = {self.black} and White Disks = {self.white}\n")
+        else:
+            print(f"Score:\n White: {self.white}    Black: {self.black}\n")
 
     def isGameOver(self):
         for i in range(1, 9):
@@ -129,13 +133,13 @@ class GameController:
         return True
 
     def calcScore(self):
-        white = 0
-        black = 0
+        self.white = 0
+        self.black = 0
         for i in range(1, 9):
             for j in range(1, 9):
                 if (self.board.get_cell(i, j) == 'B'):
-                    black += 1
-                else:
-                    white += 1
+                    self.black += 1
+                elif (self.board.get_cell(i, j) == 'W'):
+                    self.white += 1
 
-        return white, black
+        return self.white, self.black
