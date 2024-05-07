@@ -1,11 +1,10 @@
 # Othello-Game-Project
 
-
 ## Introduction
 This project implements the classic Othello game in either Prolog or Python, adhering to specific guidelines and requirements for implementation and gameplay.
 
 ## Project Requirements
-- **Game Mode**: Human vs. Computer mode.
+- **Game Mode**: Human vs. Computer mode and Human vs Human.
 - **Algorithm**: Utilize alpha-beta pruning algorithm for computer moves.
 - **Game Features**:
   - Game controller to manage player roles, moves, and game state.
