@@ -5,10 +5,8 @@
 This project implements the classic Othello game in either Prolog or Python, adhering to specific guidelines and requirements for implementation and gameplay.
 
 ## Project Requirements
-- **Group Size**: 3-5 students from the same lab or another lab taught by the same TA.
-- **Game Mode**: Human vs. Computer mode is mandatory for grading.
-- **Algorithm**: Utilize alpha-beta pruning algorithm for computer moves; no other algorithms are allowed.
-- **Programming Languages**: Prolog or Python only.
+- **Game Mode**: Human vs. Computer mode.
+- **Algorithm**: Utilize alpha-beta pruning algorithm for computer moves.
 - **Game Features**:
   - Game controller to manage player roles, moves, and game state.
   - Proper knowledge representation of the game state.
