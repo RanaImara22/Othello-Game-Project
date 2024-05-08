@@ -150,8 +150,13 @@ class GameController:
             for j in range(8):
                 boardCopy[i].append(board[i][j])
         return boardCopy
+            
     def computer_move(self):
         evalutation, bestMove = self.alphaBetaSearch(self.board.getBoardCopy(), self.depth, -1000, 1000, False)
+        if(bestMove == None):
+            tk.messagebox.showinfo("No Valid Move", f"No Valid Move for {self.current_player['player'].name}. Switching Player")
+            self.switch_player(self.current_player)
+            return
         self.playDisk(bestMove[0], bestMove[1], self.players[1]) 
 
 
