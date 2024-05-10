@@ -25,7 +25,6 @@ class OthelloMenu:
     def run(self):
         self.window.mainloop()
 
-
 if __name__ == "__main__":
     menu = OthelloMenu()
     menu.run()

@@ -1,13 +1,13 @@
 import tkinter as tk
 from Player import Player
-from GameWindow.GameController import GameController
+from GameController import GameController
 from tools import textField
 
 class ComputerWindow:
     def __init__(self):
         self.window = tk.Tk()
         self.window.title("Othello Game - One Player")
-        self.window.geometry("400x80")
+        self.window.geometry("400x50")
         self.p1_entry = textField(self.window, "Player 1 Name :", 0, 0)
         self.options = ["Easy", "Medium", "Hard"]
         self.p2_entry = tk.StringVar(self.window)

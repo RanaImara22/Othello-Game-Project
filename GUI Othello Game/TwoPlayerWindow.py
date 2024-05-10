@@ -1,6 +1,6 @@
 import tkinter as tk
 from Player import Player
-from GameWindow.GameController import GameController
+from GameController import GameController
 from tools import textField
 
 class TwoPlayerWindow:
